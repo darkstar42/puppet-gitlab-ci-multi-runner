@@ -90,7 +90,6 @@ class gitlab_ci_multi_runner (
             onlyif   => "! grep '^exclude=' /etc/yum.conf",
             user     => root,
             provider => shell,
-            require  => Exec['Ensure Service'],
         }->
         exec { 'Yum Exclude gitlab-ci-multi-runner':
             command  => "sed -i 's/^exclude=.*$/& gitlab-ci-multi-runner/' /etc/yum.conf",
@@ -115,7 +114,6 @@ class gitlab_ci_multi_runner (
                         user      => root,
                         provider  => shell,
                         path      => $path,
-                        require   => Exec['Ensure Service'],
                         #Only if the niceness isn't already set:
                         onlyif    => "! grep 'daemon ${niceval} ' ${serviceFile}",
                         notify    => Service[$service],
@@ -131,7 +129,6 @@ class gitlab_ci_multi_runner (
                         user     => root,
                         provider => shell,
                         path     => $path,
-                        require  => Exec['Ensure Service'],
                         #Only if the niceness isn't already set:
                         onlyif   => "! grep 'Nice=${nice} *\$' ${serviceFile}",
                     } ~>
@@ -152,7 +149,6 @@ class gitlab_ci_multi_runner (
                         user     => root,
                         provider => shell,
                         path     => $path,
-                        require  => Exec['Ensure Service'],
                         onlyif   => "! grep 'start-stop-daemon -N ${nice} ' ${serviceFile}",
                         #Only if the niceness isn't already set:
                         notify   => Service[$service]
