@@ -40,7 +40,7 @@ class gitlab_ci_multi_runner (
             /^(5.*|6.*)/ => '/etc/init.d/gitlab-ci-multi-runner',
             default      => '/etc/systemd/system/gitlab-runner.service',
         },
-        'deb'   => '/etc/init/gitlab-runner.conf',
+        'deb'   => '/etc/systemd/system/gitlab-runner.service',
         default => '/bin/true',
     }
 
