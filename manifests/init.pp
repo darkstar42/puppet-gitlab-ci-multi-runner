@@ -79,12 +79,6 @@ class gitlab_ci_multi_runner (
     package { 'gitlab-ci-multi-runner':
         ensure => $version,
     } ->
-    exec { 'Ensure Service':
-        command  => "${service} install",
-        user     => root,
-        provider => shell,
-        creates  => $serviceFile,
-    } ->
     # Ensure that the service is running at all times.
     service { $service:
         ensure => 'running',
