@@ -153,7 +153,7 @@ define gitlab_ci_multi_runner::runner (
     }
 
     if $description {
-        $description_opt = "--description=${description}"
+        $name_opt = "--name=${description}"
     }
 
     if $tags {
@@ -166,7 +166,7 @@ define gitlab_ci_multi_runner::runner (
     }
 
     # I group like arguments together so my final opstring won't be so giant.
-    $runner_opts = "${gitlab_ci_url_opt} ${description_opt} ${tags_opt} ${token_opt}"
+    $runner_opts = "${gitlab_ci_url_opt} ${name_opt} ${tags_opt} ${token_opt}"
 
     if $executor {
         $executor_opt = "--executor=${executor}"
